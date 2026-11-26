@@ -3091,8 +3091,7 @@ class SmartOptionsScanner:
             if preference_snapshot is not None:
                 self._restore_preferences(preference_snapshot)
             return result
-
-            opportunities = self.analyze_opportunities(
+opportunities = self.analyze_opportunities(
             options_data,
             allow_relaxed_fallback=allow_relaxed,
         )
