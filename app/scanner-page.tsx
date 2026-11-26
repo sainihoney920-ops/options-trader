@@ -468,7 +468,7 @@ interface ScannerPageProps {
   user: {
     id: string
     email?: string | null
-  }
+  } | null
 }
 
 const DEFAULT_FETCH_TIMEOUT_MS = 120_000  // 2 minutes for cloud deployments
