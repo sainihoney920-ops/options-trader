@@ -3092,10 +3092,19 @@ class SmartOptionsScanner:
                 self._restore_preferences(preference_snapshot)
             return result
 
-        opportunities = self.analyze_opportunities(
+               opportunities = self.analyze_opportunities(
             options_data,
             allow_relaxed_fallback=allow_relaxed,
         )
+
+        # Never publish trade opportunities from a stale options snapshot.
+        snapshot_live = self._snapshot_is_live()
+        if not snapshot_live:
+            print(
+                "⏸️  Suppressing trade opportunities because options data is stale or unverified",
+                file=sys.stderr,
+            )
+            opportunities = []
 
         # TEMPORARILY DISABLED budget filtering to diagnose 0 results
         # pre_budget_count = len(opportunities)
